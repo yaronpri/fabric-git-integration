@@ -1,0 +1,81 @@
+{
+  "properties": {
+    "jobMode": "Batch",
+    "source": {
+      "type": "Parquet",
+      "connectionSettings": {
+        "type": "Lakehouse",
+        "typeProperties": {
+          "workspaceId": "6eaa11fc-511c-40d1-b090-72a27764fd75",
+          "artifactId": "0a5db5a9-43d9-4c2f-8029-b1ad24347cce",
+          "rootFolder": "Files"
+        }
+      }
+    },
+    "destination": {
+      "type": "DelimitedText",
+      "connectionSettings": {
+        "type": "Lakehouse",
+        "typeProperties": {
+          "workspaceId": "6eaa11fc-511c-40d1-b090-72a27764fd75",
+          "artifactId": "0a5db5a9-43d9-4c2f-8029-b1ad24347cce",
+          "rootFolder": "Files"
+        }
+      }
+    },
+    "policy": {
+      "timeout": "0.12:00:00"
+    }
+  },
+  "activities": [
+    {
+      "id": "4c9241e3-7bc5-4650-9965-f2e07aed08dc",
+      "properties": {
+        "source": {
+          "datasetSettings": {
+            "location": {
+              "type": "LakehouseLocation",
+              "fileName": "part-00000-04b3cd84-851e-4474-8417-3311ffceab6b-c000.snappy.parquet",
+              "folderPath": "Temp/EmbedVolume"
+            },
+            "compressionCodec": "snappy"
+          },
+          "storeSettings": {
+            "recursive": true,
+            "enablePartitionDiscovery": false
+          }
+        },
+        "destination": {
+          "datasetSettings": {
+            "location": {
+              "type": "LakehouseLocation",
+              "fileName": "copyjob1_file1_fullcopy",
+              "folderPath": "Temp/joemuziki_test"
+            },
+            "columnDelimiter": ",",
+            "escapeChar": "\\",
+            "firstRowAsHeader": true,
+            "quoteChar": "\""
+          },
+          "storeSettings": {
+            "copyBehavior": "MergeFiles"
+          },
+          "formatSettings": {
+            "fileExtension": ".txt",
+            "quoteAllText": true
+          }
+        },
+        "enableStaging": false,
+        "translator": {
+          "type": "TabularTranslator"
+        },
+        "typeConversionSettings": {
+          "typeConversion": {
+            "allowDataTruncation": true,
+            "treatBooleanAsNumber": false
+          }
+        }
+      }
+    }
+  ]
+}

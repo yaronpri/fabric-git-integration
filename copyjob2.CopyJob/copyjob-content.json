@@ -1,0 +1,320 @@
+{
+  "properties": {
+    "jobMode": "Batch",
+    "source": {
+      "type": "FabricSqlDatabaseTable",
+      "connectionSettings": {
+        "type": "FabricSqlDatabase",
+        "typeProperties": {
+          "workspaceId": "2d2e0ae2-9505-4f0c-ab42-e76cc11fb07d",
+          "artifactId": "bc29e694-5b4d-457b-87d7-6ca6b79de395"
+        },
+        "externalReferences": {
+          "connection": "c737dc6b-1de9-40c3-9e3f-b29276289a5b"
+        }
+      }
+    },
+    "destination": {
+      "type": "LakehouseTable",
+      "connectionSettings": {
+        "type": "Lakehouse",
+        "typeProperties": {
+          "workspaceId": "6b393c20-99df-43c5-9ec1-23cbc3708222",
+          "artifactId": "ed73677a-d912-4b44-8a6f-a716e9818e65",
+          "rootFolder": "Tables"
+        }
+      }
+    },
+    "policy": {
+      "timeout": "0.12:00:00"
+    }
+  },
+  "activities": [
+    {
+      "id": "8b1a1bf8-9606-4a4d-9843-f059fefae235",
+      "properties": {
+        "source": {
+          "datasetSettings": {
+            "schema": "orchestration",
+            "table": "ExecutionLog"
+          }
+        },
+        "destination": {
+          "writeBehavior": "Append",
+          "datasetSettings": {
+            "table": "orchestration_ExecutionLog"
+          }
+        },
+        "enableStaging": false,
+        "translator": {
+          "type": "TabularTranslator",
+          "mappings": [
+            {
+              "source": {
+                "name": "LogId",
+                "type": "Int32",
+                "physicalType": "int"
+              },
+              "destination": {
+                "name": "LogId",
+                "physicalType": "integer"
+              }
+            },
+            {
+              "source": {
+                "name": "BatchRunId",
+                "type": "Guid",
+                "physicalType": "uniqueidentifier"
+              },
+              "destination": {
+                "name": "BatchRunId",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "Stage",
+                "type": "Int32",
+                "physicalType": "int"
+              },
+              "destination": {
+                "name": "Stage",
+                "physicalType": "integer"
+              }
+            },
+            {
+              "source": {
+                "name": "PipelineId",
+                "type": "Int32",
+                "physicalType": "int"
+              },
+              "destination": {
+                "name": "PipelineId",
+                "physicalType": "integer"
+              }
+            },
+            {
+              "source": {
+                "name": "PipelineName",
+                "type": "String",
+                "physicalType": "nvarchar",
+                "length": "200"
+              },
+              "destination": {
+                "name": "PipelineName",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "PipelineDescription",
+                "type": "String",
+                "physicalType": "nvarchar",
+                "length": "200"
+              },
+              "destination": {
+                "name": "PipelineDescription",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "BatchName",
+                "type": "String",
+                "physicalType": "varchar",
+                "length": "255"
+              },
+              "destination": {
+                "name": "BatchName",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "StartDateTime",
+                "type": "DateTime",
+                "physicalType": "datetime"
+              },
+              "destination": {
+                "name": "StartDateTime",
+                "physicalType": "timestamp"
+              }
+            },
+            {
+              "source": {
+                "name": "PipelineStatus",
+                "type": "String",
+                "physicalType": "nvarchar",
+                "length": "200"
+              },
+              "destination": {
+                "name": "PipelineStatus",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "EndDateTime",
+                "type": "DateTime",
+                "physicalType": "datetime"
+              },
+              "destination": {
+                "name": "EndDateTime",
+                "physicalType": "timestamp"
+              }
+            },
+            {
+              "source": {
+                "name": "NotebookAppId",
+                "type": "String",
+                "physicalType": "nvarchar",
+                "length": "200"
+              },
+              "destination": {
+                "name": "NotebookAppId",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "PipelineRunId",
+                "type": "Guid",
+                "physicalType": "uniqueidentifier"
+              },
+              "destination": {
+                "name": "PipelineRunId",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "PipelineParamsUsed",
+                "type": "String",
+                "physicalType": "nvarchar",
+                "length": "MAX"
+              },
+              "destination": {
+                "name": "PipelineParamsUsed",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "WorkspaceId",
+                "type": "String",
+                "physicalType": "nvarchar",
+                "length": "200"
+              },
+              "destination": {
+                "name": "WorkspaceId",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "WorkspaceName",
+                "type": "String",
+                "physicalType": "nvarchar",
+                "length": "200"
+              },
+              "destination": {
+                "name": "WorkspaceName",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "IcMQueue",
+                "type": "String",
+                "physicalType": "nvarchar",
+                "length": "200"
+              },
+              "destination": {
+                "name": "IcMQueue",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "GrandParentRunLink",
+                "type": "String",
+                "physicalType": "nvarchar",
+                "length": "350"
+              },
+              "destination": {
+                "name": "GrandParentRunLink",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "ParentRunLink",
+                "type": "String",
+                "physicalType": "nvarchar",
+                "length": "350"
+              },
+              "destination": {
+                "name": "ParentRunLink",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "ChildRunLink",
+                "type": "String",
+                "physicalType": "nvarchar",
+                "length": "350"
+              },
+              "destination": {
+                "name": "ChildRunLink",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "InfantRunLink",
+                "type": "String",
+                "physicalType": "nvarchar",
+                "length": "350"
+              },
+              "destination": {
+                "name": "InfantRunLink",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "PipelineRunLink",
+                "type": "String",
+                "physicalType": "nvarchar",
+                "length": "350"
+              },
+              "destination": {
+                "name": "PipelineRunLink",
+                "physicalType": "string"
+              }
+            },
+            {
+              "source": {
+                "name": "NotebookRunLink",
+                "type": "String",
+                "physicalType": "nvarchar",
+                "length": "350"
+              },
+              "destination": {
+                "name": "NotebookRunLink",
+                "physicalType": "string"
+              }
+            }
+          ]
+        },
+        "typeConversionSettings": {
+          "typeConversion": {
+            "allowDataTruncation": true,
+            "treatBooleanAsNumber": false
+          }
+        }
+      }
+    }
+  ]
+}

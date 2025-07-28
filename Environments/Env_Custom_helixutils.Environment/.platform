@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Environment",
+    "displayName": "Env_Custom_helixutils"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ce5f6c82-02d5-9c69-4131-ebbba251c571"
+  }
+}
