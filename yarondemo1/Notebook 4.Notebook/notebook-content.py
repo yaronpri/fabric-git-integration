@@ -13,7 +13,7 @@
 
 # Welcome to your new notebook
 # Type here in the cell editor to add code!
-print(22)
+print(1)
 
 # METADATA ********************
 
